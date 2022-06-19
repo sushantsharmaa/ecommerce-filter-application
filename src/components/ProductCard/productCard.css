@@ -1,0 +1,18 @@
+@import url("https://uilight.netlify.app/main.css");
+
+.card-image-container {
+  height: 12rem;
+}
+
+.card-image {
+  height: 100%;
+  object-fit: contain;
+}
+
+.price-strike-through {
+  margin: 0px 5px 0px 5px;
+}
+
+.button {
+  background: #6a67ce;
+}
