@@ -1,6 +1,7 @@
 import "./app.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Filter from "./components/Filter/Filter";
 import Navbar from "./components/Navbar/Navbar";
 import ProductCard from "./components/ProductCard/ProductCard";
 
@@ -22,7 +23,9 @@ function App() {
     <>
       <Navbar />
       <div className="main">
-        <div className="main-left"></div>
+        <div className="main-left">
+          <Filter />
+        </div>
         <div className="main-right">
           {products &&
             products.length > 0 &&

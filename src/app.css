@@ -1,12 +1,12 @@
 .main {
   margin-top: 100px;
+  margin-bottom: 20px;
   display: flex;
   gap: 2%;
 }
 
 .main-left {
   width: 19%;
-  border: 1px solid red;
 }
 
 .main-right {
