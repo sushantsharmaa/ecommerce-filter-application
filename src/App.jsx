@@ -3,10 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Filter from "./components/Filter/Filter";
 import Navbar from "./components/Navbar/Navbar";
+import { useFilter } from "./context/filterContext";
 import ProductCard from "./components/ProductCard/ProductCard";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const { state } = useFilter();
 
   useEffect(() => {
     (async function () {
@@ -19,6 +21,19 @@ function App() {
     })();
   }, []);
 
+  const getSortedProducts = (products, sort) => {
+    const sortedProducts = [...products].sort((item1, item2) =>
+      sort === "lth"
+        ? item1.newPrice - item2.newPrice
+        : sort === "htl"
+        ? item2.newPrice - item1.newPrice
+        : products
+    );
+    return sortedProducts;
+  };
+
+  const sortedProducts = getSortedProducts(products, state.sort);
+
   return (
     <>
       <Navbar />
@@ -27,9 +42,9 @@ function App() {
           <Filter />
         </div>
         <div className="main-right">
-          {products &&
-            products.length > 0 &&
-            products.map((product) => (
+          {sortedProducts &&
+            sortedProducts.length > 0 &&
+            sortedProducts.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
         </div>
