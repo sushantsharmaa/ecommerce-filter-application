@@ -39,9 +39,18 @@ function App() {
     return sortedProducts;
   };
 
+  const getProductsByBrand = (products, brand) => {
+    const sortedProducts = products.filter((product) =>
+      brand.length > 0 ? brand.includes(product.brand) : products
+    );
+    return sortedProducts;
+  };
+
   const sortedProducts = getSortedProducts(products, state.sort);
 
   const productsBySize = getProductsBySize(sortedProducts, state.size);
+
+  const productsByBrand = getProductsByBrand(productsBySize, state.brand);
 
   return (
     <>
@@ -51,9 +60,9 @@ function App() {
           <Filter />
         </div>
         <div className="main-right">
-          {productsBySize &&
-            productsBySize.length > 0 &&
-            productsBySize.map((product) => (
+          {productsByBrand &&
+            productsByBrand.length > 0 &&
+            productsByBrand.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
         </div>

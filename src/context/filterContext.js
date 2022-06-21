@@ -13,7 +13,8 @@ const FilterProvider = ({ children }) => {
   const [state, filterDispatch] = useReducer(filterReducer, {
     sort: "",
     size: [],
-    brand: "",
+    brand: [],
+    category: "",
   });
 
   return (
