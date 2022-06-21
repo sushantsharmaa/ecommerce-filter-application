@@ -37,6 +37,14 @@ export const filterReducer = (state, action) => {
         ...state,
         category: action.payload,
       };
+    case "CLEAR":
+      return {
+        ...state,
+        sort: "",
+        size: [],
+        brand: [],
+        category: "all",
+      };
     default:
       return state;
   }
