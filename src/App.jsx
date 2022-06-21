@@ -46,11 +46,22 @@ function App() {
     return sortedProducts;
   };
 
+  const getProductsByCategory = (products, category) => {
+    const sortedProducts = products.filter((product) =>
+      category !== "all" ? product.idealFor === category : products
+    );
+    return sortedProducts;
+  };
   const sortedProducts = getSortedProducts(products, state.sort);
 
   const productsBySize = getProductsBySize(sortedProducts, state.size);
 
   const productsByBrand = getProductsByBrand(productsBySize, state.brand);
+
+  const productsByCategory = getProductsByCategory(
+    productsByBrand,
+    state.category
+  );
 
   return (
     <>
@@ -60,9 +71,9 @@ function App() {
           <Filter />
         </div>
         <div className="main-right">
-          {productsByBrand &&
-            productsByBrand.length > 0 &&
-            productsByBrand.map((product) => (
+          {productsByCategory &&
+            productsByCategory.length > 0 &&
+            productsByCategory.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
         </div>

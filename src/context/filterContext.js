@@ -14,7 +14,7 @@ const FilterProvider = ({ children }) => {
     sort: "",
     size: [],
     brand: [],
-    category: "",
+    category: "all",
   });
 
   return (
