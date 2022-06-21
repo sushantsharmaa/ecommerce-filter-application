@@ -1,5 +1,5 @@
 import { useContext, createContext, useReducer } from "react";
-import { reducerFun } from "../reducer/filterReducer";
+import { filterReducer } from "../reducer/filterReducer";
 
 /* Steps :-
 1) Create Context
@@ -7,18 +7,12 @@ import { reducerFun } from "../reducer/filterReducer";
 3) Use Context
 */
 
-const initialState = {
-  sort: "LTH",
-  size: "L",
-  brand: "Zara",
-};
-
-const FilterContext = createContext(initialState);
+const FilterContext = createContext();
 
 const FilterProvider = ({ children }) => {
-  const [state, filterDispatch] = useReducer(reducerFun, {
+  const [state, filterDispatch] = useReducer(filterReducer, {
     sort: "",
-    size: "",
+    size: [],
     brand: "",
   });
 

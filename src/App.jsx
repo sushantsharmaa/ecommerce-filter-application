@@ -32,7 +32,16 @@ function App() {
     return sortedProducts;
   };
 
+  const getProductsBySize = (products, size) => {
+    const sortedProducts = products.filter((product) =>
+      size.length > 0 ? size.includes(product.size) : products
+    );
+    return sortedProducts;
+  };
+
   const sortedProducts = getSortedProducts(products, state.sort);
+
+  const productsBySize = getProductsBySize(sortedProducts, state.size);
 
   return (
     <>
@@ -42,9 +51,9 @@ function App() {
           <Filter />
         </div>
         <div className="main-right">
-          {sortedProducts &&
-            sortedProducts.length > 0 &&
-            sortedProducts.map((product) => (
+          {productsBySize &&
+            productsBySize.length > 0 &&
+            productsBySize.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
         </div>
